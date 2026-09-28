@@ -1,4 +1,12 @@
 {
+  "env": {
+    "VERCEL_SUPPORT_LARGE_FUNCTIONS": "1"
+  },
+  "build": {
+    "env": {
+      "VERCEL_SUPPORT_LARGE_FUNCTIONS": "1"
+    }
+  },
   "builds": [
     {
       "src": "main.py",
