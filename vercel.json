@@ -2,15 +2,16 @@
   "env": {
     "VERCEL_SUPPORT_LARGE_FUNCTIONS": "1"
   },
-  "rewrites": [
+  "builds": [
     {
-      "source": "/(.*)",
-      "destination": "/main.py"
+      "src": "main.py",
+      "use": "@vercel/python"
     }
   ],
-  "functions": {
-    "main.py": {
-      "includeFiles": "glaucoma_final_model.pkl"
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/main.py"
     }
-  }
+  ]
 }
