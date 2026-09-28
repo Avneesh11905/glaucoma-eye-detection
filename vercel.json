@@ -2,21 +2,10 @@
   "env": {
     "VERCEL_SUPPORT_LARGE_FUNCTIONS": "1"
   },
-  "build": {
-    "env": {
-      "VERCEL_SUPPORT_LARGE_FUNCTIONS": "1"
-    }
-  },
-  "builds": [
+  "rewrites": [
     {
-      "src": "main.py",
-      "use": "@vercel/python"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "main.py"
+      "source": "/(.*)",
+      "destination": "/main.py"
     }
   ],
   "functions": {
