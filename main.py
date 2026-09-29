@@ -29,7 +29,23 @@ async def lifespan(app: FastAPI):
     # Clean up resources on shutdown
     ml.clear()
 
+from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI(title="Glaucoma Detection API", lifespan=lifespan)
+
+# Add CORS Middleware to allow requests from the frontend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://glaucoma.vkpatel.in", "http://localhost:5173"], # Added localhost for local dev testing
+    allow_credentials=True,
+    allow_methods=["*"], # Allows GET, POST, OPTIONS, etc.
+    allow_headers=["*"], # Allows all headers
+)
+
+@app.get("/")
+def health_check():
+    """Health check endpoint required by most hosting platforms (Render/Railway)."""
+    return {"status": "ok", "message": "Glaucoma Detection API is running"}
 
 @app.post("/predict")
 def predict_endpoint(file: UploadFile):
